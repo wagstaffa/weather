@@ -1,0 +1,12 @@
+FROM mcr.microsoft.com/dotnet/sdk:3.1
+WORKDIR /weather-api
+
+ENV ASPNETCORE_URLS=http://*:5000
+
+COPY . .
+RUN dotnet restore
+RUN dotnet publish -o /publish
+
+WORKDIR /publish
+
+ENTRYPOINT ["dotnet", "/publish/weather.dll"]

@@ -1,0 +1,17 @@
+#Build Stage
+FROM mcr.microsoft.com/dotnet/sdk:3.1 as build-env
+WORKDIR /weather-api
+
+ENV ASPNETCORE_URLS=http://*:80
+
+COPY . .
+RUN dotnet restore
+RUN dotnet publish -c release -o /publish
+
+#Runtime Image Stage
+FROM mcr.microsoft.com/dotnet/aspnet:3.1 as runtime-env
+
+WORKDIR /publish
+COPY --from=build-env /publish .
+
+ENTRYPOINT ["dotnet", "Weather.dll"]
