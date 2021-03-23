@@ -19,6 +19,6 @@ node('DOTNETCORE'){
 		echo 'Push to deployment'
 	}
 	stage('Archive'){
-		archiveArtifacts artifacts: 'Weather/Weather/*.*'
+		archiveArtifacts artifacts: 'Weather/*.*'
 	}
 }
