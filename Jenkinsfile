@@ -2,6 +2,9 @@ node('DOTNETCORE'){
 	stage('SCM'){
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/wagstaffa/weather']]])
 	}
+	stage('Restore'){
+		sh 'dotnet restore'
+	}
 	stage('Build'){
 		try{
 		sh 'dotnet build Weather'
