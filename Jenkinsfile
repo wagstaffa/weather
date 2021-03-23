@@ -4,7 +4,7 @@ node('DOTNETCORE'){
 	}
 	stage('Build'){
 		try{
-		sh 'dotnet build Weather/'
+		sh 'dotnet build Weather'
 		}finally{
 		archiveArtifacts artifacts: 'Weather/*.*'
 		}
