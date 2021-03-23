@@ -1,12 +1,12 @@
 node('DOTNETCORE'){
 	stage('SCM'){
-		checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/wagstaffa/weather']]])
+		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/awagstaff/weather']]])
 	}
 	stage('Build'){
 		try{
-		sh 'dotnet build Weather/Weather'
+		sh 'dotnet build Weather/'
 		}finally{
-		archiveArtifacts artifacts: 'Weather/Weather/*.*'
+		archiveArtifacts artifacts: 'Weather/*.*'
 		}
 	}
 	stage('Test'){
