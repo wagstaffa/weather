@@ -20,8 +20,9 @@ node('DOTNETCORE'){
 		echo 'Publish to dir: publish'
 		sh 'dotnet publish -c=Release -o=publish'
 	}
-	stage('Deploy'){
-		echo 'Push to deployment'
+	stage('Run'){
+		echo 'run app'
+		sh 'dotnet run publish/Weather.dll'
 	}
 	stage('Archive'){
 		archiveArtifacts artifacts: 'publish/*.*'
