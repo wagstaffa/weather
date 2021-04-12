@@ -22,7 +22,7 @@ node('DOTNETCORE'){
 	}
 	stage('Run'){
 		echo 'run app'
-		sh 'dotnet run publish/Weather.dll'
+		sh 'dotnet publish/Weather.dll'
 	}
 	stage('Archive'){
 		archiveArtifacts artifacts: 'publish/*.*'
